@@ -1,4 +1,17 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { EventifyEvent } from '@eventify-org/common-api';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class EventsHttpService {}
+export class EventsHttpService {
+  private apiUrl = 'https://teclead-ventures.github.io/data/london-events.json';
+  private httpClient = inject(HttpClient);
+
+  /**
+   * @returns An `Observable<EventifyEvent[]>`.
+   */
+  getEventifyEvents(): Observable<EventifyEvent[]> {
+    return this.httpClient.get<EventifyEvent[]>(this.apiUrl);
+  }
+}
