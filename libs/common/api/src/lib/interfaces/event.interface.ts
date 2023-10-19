@@ -21,12 +21,12 @@ interface EventifyArtist {
 export interface EventifyEvent {
   _id: string;
   title: string;
-  flyerFront: string;
+  flyerFront: string | null;
   attending: number;
   date: string;
   startTime: string;
   endTime: string;
-  contentUrl: string;
+  contentUrl: string | null;
   venue: EventifyVenue;
   pick: EventifyPick;
   artists: EventifyArtist[];
