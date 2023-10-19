@@ -6,12 +6,13 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { EventsFacade } from '@eventify-org/events/data-access';
 
 @Component({
   selector: 'eventify-org-events',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, JsonPipe],
+  imports: [NgIf, NgFor, AsyncPipe, JsonPipe, MatButtonModule],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
   encapsulation: ViewEncapsulation.None,

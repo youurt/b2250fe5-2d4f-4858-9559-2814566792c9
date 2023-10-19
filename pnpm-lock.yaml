@@ -43,6 +43,7 @@ specifiers:
   '@storybook/core-server': 7.5.1
   '@swc-node/register': ~1.6.7
   '@swc/core': ~1.3.85
+  '@thecodecampus/angular-material-theme': ^3.0.1
   '@types/jest': ^29.4.0
   '@types/node': 16.11.7
   '@typescript-eslint/eslint-plugin': ^5.60.1
@@ -87,6 +88,7 @@ dependencies:
   '@ngrx/router-store': 16.0.1_d4eqes5zrmmo65mm2eg6xxvzea
   '@ngrx/store': 16.0.1_hp6hdkaa6pzdehc2xbzrtcrjae
   '@nx/angular': 16.10.0_5gsbohkemgqaid3rgahdtdr3xi
+  '@thecodecampus/angular-material-theme': 3.0.1_@angular+material@16.2.9
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rxjs: 7.8.1
@@ -3123,6 +3125,10 @@ packages:
   /@floating-ui/utils/0.1.6:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: true
+
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
+    dev: false
 
   /@humanwhocodes/config-array/0.11.12:
     resolution: {integrity: sha512-NlGesA1usRNn6ctHCZ21M4/dKPgW9Nn1FypRdIKKgZOKzkVV4T1FlK5mBiLhHBCDmEbdQG0idrcXlbZfksJ+RA==}
@@ -6858,6 +6864,15 @@ packages:
 
   /@swc/types/0.1.5:
     resolution: {integrity: sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==}
+
+  /@thecodecampus/angular-material-theme/3.0.1_@angular+material@16.2.9:
+    resolution: {integrity: sha512-Ij9jOZ+bu+YBGYi1Dq53LZ7mRpCwAhMI/sv0KMBfnYdie2ryEU/g/T1LGvTL4q3FSf72imXOf6YZDCMixnVk9Q==}
+    peerDependencies:
+      '@angular/material': '>=12'
+    dependencies:
+      '@angular/material': 16.2.9_vq2pv344rwcol5jhbeklt7lbnm
+      '@fontsource/noto-sans': 4.5.11
+    dev: false
 
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}

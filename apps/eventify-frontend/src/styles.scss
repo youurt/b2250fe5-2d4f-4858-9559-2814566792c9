@@ -3,4 +3,5 @@
 @tailwind utilities;
 
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '@thecodecampus/angular-material-theme/src/styling/theme';
+@include tcc-angular-material-dark-theme();

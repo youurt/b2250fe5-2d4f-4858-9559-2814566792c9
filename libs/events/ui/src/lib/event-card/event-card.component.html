@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="imagePath" alt="Photo to event {{ title }}" />
+  <mat-card-content>
+    <div>
+      {{ startingDate | date }}
+    </div>
+    <div>
+      {{ endingDate | date }}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
