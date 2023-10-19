@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@eventify-org/events": ["libs/events/feature/src/index.ts"],
       "@eventify-org/events/data-access": [
         "libs/events/data-access/src/index.ts"
       ]
