@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@eventify-org/common-api": ["libs/common/api/src/index.ts"],
+      "@eventify-org/events": ["libs/events/feature/src/index.ts"],
+      "@eventify-org/events/data-access": [
+        "libs/events/data-access/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
