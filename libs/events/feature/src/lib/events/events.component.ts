@@ -1,17 +1,31 @@
+import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { EventsFacade } from '@eventify-org/events/data-access';
 
 @Component({
   selector: 'eventify-org-events',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf, NgFor, AsyncPipe, JsonPipe],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsComponent {}
+export class EventsComponent implements OnInit {
+  private eventsFacade = inject(EventsFacade);
+
+  /**
+   * The list of events.
+   */
+  protected events$ = this.eventsFacade.$events;
+
+  ngOnInit(): void {
+    this.eventsFacade.loadEvents(); // initial load
+  }
+}

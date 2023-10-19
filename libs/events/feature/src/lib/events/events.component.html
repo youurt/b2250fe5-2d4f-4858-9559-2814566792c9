@@ -1,1 +1,9 @@
-<p class="bg-red-600">events works!</p>
+<ng-container
+  *ngIf="{
+    events: events$ | async
+  } as config"
+>
+  <div *ngFor="let event of config.events">
+    {{ event.title }}
+  </div>
+</ng-container>
