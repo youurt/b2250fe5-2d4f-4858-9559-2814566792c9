@@ -7,10 +7,15 @@ export const appRoutes: Route[] = [
     component: AppComponent,
     children: [
       {
-        path: 'events',
+        path: '',
         loadChildren: () =>
           import('@eventify-org/events').then((module) => module.eventsRoutes),
       },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];

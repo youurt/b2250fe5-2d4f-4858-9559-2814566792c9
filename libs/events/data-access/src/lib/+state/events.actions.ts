@@ -1,14 +1,16 @@
+import { EventifyEvent } from '@eventify-org/common-api';
 import { createAction, props } from '@ngrx/store';
-import { EventsEntity } from './events.models';
 
 export const initEvents = createAction('[Events Page] Init');
 
+/**
+ * Load Events Api Actions.
+ */
+export const loadEvents = createAction('[Events/API] Load Events');
 export const loadEventsSuccess = createAction(
   '[Events/API] Load Events Success',
-  props<{ events: EventsEntity[] }>()
+  props<{ eventifyEvents: EventifyEvent[] }>()
 );
-
 export const loadEventsFailure = createAction(
-  '[Events/API] Load Events Failure',
-  props<{ error: any }>()
+  '[Events/API] Load Events Failure'
 );

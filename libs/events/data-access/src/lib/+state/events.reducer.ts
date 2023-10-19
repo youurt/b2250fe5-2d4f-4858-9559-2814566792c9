@@ -1,45 +1,57 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
-
+import { EventifyEvent } from '@eventify-org/common-api';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 import * as EventsActions from './events.actions';
-import { EventsEntity } from './events.models';
-
 export const EVENTS_FEATURE_KEY = 'events';
 
-export interface EventsState extends EntityState<EventsEntity> {
-  selectedId?: string | number; // which Events record has been selected
-  loaded: boolean; // has the Events list been loaded
-  error?: string | null; // last known error (if any)
+export interface EventifyEventsState extends EntityState<EventifyEvent> {
+  loading: boolean;
+}
+
+export interface EventsState {
+  eventifyEvents: EventifyEventsState;
 }
 
 export interface EventsPartialState {
   readonly [EVENTS_FEATURE_KEY]: EventsState;
 }
 
-export const eventsAdapter: EntityAdapter<EventsEntity> =
-  createEntityAdapter<EventsEntity>();
+export const eventifyEventsAdapter: EntityAdapter<EventifyEvent> =
+  createEntityAdapter<EventifyEvent>({
+    selectId: (eventifyEvent) => eventifyEvent._id,
+  });
 
-export const initialEventsState: EventsState = eventsAdapter.getInitialState({
-  // set initial required properties
-  loaded: false,
-});
+export const initialEventifyEventsState: EventifyEventsState =
+  eventifyEventsAdapter.getInitialState({
+    loading: false,
+  });
+
+export const initialEventsState: EventsState = {
+  eventifyEvents: initialEventifyEventsState,
+};
 
 const reducer = createReducer(
   initialEventsState,
-  on(EventsActions.initEvents, (state) => ({
+  on(EventsActions.loadEvents, (state) => ({
     ...state,
-    loaded: false,
-    error: null,
+    eventifyEvents: { ...state.eventifyEvents, loading: true },
   })),
-  on(EventsActions.loadEventsSuccess, (state, { events }) =>
-    eventsAdapter.setAll(events, { ...state, loaded: true })
-  ),
-  on(EventsActions.loadEventsFailure, (state, { error }) => ({
+  on(EventsActions.loadEventsSuccess, (state, { eventifyEvents }) => ({
     ...state,
-    error,
+    eventifyEvents: eventifyEventsAdapter.setMany(eventifyEvents, {
+      ...state.eventifyEvents,
+      loading: false,
+    }),
+  })),
+  on(EventsActions.loadEventsSuccess, (state) => ({
+    ...state,
+    eventifyEvents: { ...state.eventifyEvents, loading: false },
   }))
 );
 
-export function eventsReducer(state: EventsState | undefined, action: Action) {
+export const eventsReducer = (
+  state: EventsState | undefined,
+  action: Action
+) => {
   return reducer(state, action);
-}
+};
