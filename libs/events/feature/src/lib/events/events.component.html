@@ -1,9 +1,21 @@
+<eventify-org-toolbar
+  (formValueChanges)="onFormValueChanges($event)"
+></eventify-org-toolbar>
 <ng-container
   *ngIf="{
     events: events$ | async
   } as config"
 >
-  <div *ngFor="let event of config.events">
-    {{ event.title }}
+  <div class="p-4 sm:p-8 grid sm:grid-cols-3 grid-cols-1 gap-4">
+    <eventify-org-event-card
+      *ngFor="let event of config.events"
+      [title]="event.title"
+      [imagePath]="event.flyerFront"
+      [location]="event.venue.direction"
+      [startingDate]="event.startTime"
+      [endingDate]="event.endTime"
+    ></eventify-org-event-card>
   </div>
+
+  <!-- <div *ngFor="let event of config.events">{{ event | json }}</div> -->
 </ng-container>

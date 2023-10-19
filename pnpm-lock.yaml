@@ -53,6 +53,7 @@ specifiers:
   jest-environment-jsdom: ^29.4.1
   jest-preset-angular: ~13.1.0
   jsonc-eslint-parser: ^2.1.0
+  material-design-icons: ^3.0.1
   nx: 16.10.0
   postcss: ^8.4.5
   prettier: ^2.6.2
@@ -84,6 +85,7 @@ dependencies:
   '@ngrx/store': 16.0.1_hp6hdkaa6pzdehc2xbzrtcrjae
   '@nx/angular': 16.10.0_vq6tl64icb34clemikudsudaxy
   '@thecodecampus/angular-material-theme': 3.0.1_@angular+material@16.2.9
+  material-design-icons: 3.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rxjs: 7.8.1
@@ -9947,6 +9949,10 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+
+  /material-design-icons/3.0.1:
+    resolution: {integrity: sha512-t19Z+QZBwSZulxptEu05kIm+UyfIdJY1JDwI+nx02j269m6W414whiQz9qfvQIiLrdx71RQv+T48nHhuQXOCIQ==}
+    dev: false
 
   /mdn-data/2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}

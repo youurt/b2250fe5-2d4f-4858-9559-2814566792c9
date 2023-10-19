@@ -21,7 +21,7 @@ interface EventifyArtist {
 export interface EventifyEvent {
   _id: string;
   title: string;
-  flyerFront: string | null;
+  flyerFront: string | null | undefined;
   attending: number;
   date: string;
   startTime: string;

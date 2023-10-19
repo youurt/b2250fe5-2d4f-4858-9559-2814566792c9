@@ -29,7 +29,7 @@ export class EventCardComponent {
   /**
    * The image path of the event.
    */
-  @Input({ required: true }) imagePath!: string;
+  @Input() imagePath?: string | null;
 
   /**
    * The location of the event.
@@ -45,4 +45,7 @@ export class EventCardComponent {
    * The ending date of the event.
    */
   @Input({ required: true }) endingDate!: string;
+
+  fallbackImagePath =
+    'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg';
 }

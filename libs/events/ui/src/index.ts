@@ -1,1 +1,1 @@
-export { ProjectCardComponent } from './lib/project-card/project-card.component';
+export { EventCardComponent } from './lib/event-card/event-card.component';
