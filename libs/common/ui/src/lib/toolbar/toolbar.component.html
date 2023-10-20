@@ -1,26 +1,31 @@
 <mat-toolbar class="flex justify-between">
-  <form [formGroup]="toolbarForm" class="c-eventify-org-toolbar__form">
-    <mat-form-field>
-      <span class="ml-1" matPrefix><mat-icon>search</mat-icon></span>
-      <input formControlName="search" placeholder="Search" type="text" matInput />
-    </mat-form-field>
-  </form>
-  <button
-    type="button"
-    mat-mini-fab
-    [matBadge]="cart?.length || ''"
-    [matMenuTriggerFor]="menu"
-    [disabled]="!cart?.length"
-    matTooltip="Check out your cart!"
-  >
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <div class="flex flex-col gap-2">
-      <ng-container *ngFor="let item of cart; let isLast = last">
-        <button type="button" (click)="onRemoveFromCart(item)" mat-menu-item>remove {{ item.title }} from cart</button>
-        <mat-divider *ngIf="!isLast"></mat-divider>
-      </ng-container>
-    </div>
-  </mat-menu>
+  <div class="font-mono">Eventify</div>
+  <div class="flex gap-4 items-center">
+    <form [formGroup]="toolbarForm" class="c-eventify-org-toolbar__form">
+      <mat-form-field>
+        <span class="ml-1" matPrefix><mat-icon>search</mat-icon></span>
+        <input formControlName="search" placeholder="Search" type="text" matInput />
+      </mat-form-field>
+    </form>
+    <button
+      type="button"
+      mat-mini-fab
+      [matBadge]="cart?.length || ''"
+      [matMenuTriggerFor]="menu"
+      [disabled]="!cart?.length"
+      matTooltip="Check out your cart!"
+    >
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class="flex flex-col gap-2">
+        <ng-container *ngFor="let item of cart; let isLast = last">
+          <button type="button" (click)="onRemoveFromCart(item)" mat-menu-item>
+            remove {{ item.title }} from cart
+          </button>
+          <mat-divider *ngIf="!isLast"></mat-divider>
+        </ng-container>
+      </div>
+    </mat-menu>
+  </div>
 </mat-toolbar>
