@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostBinding,
+  Input,
   OnInit,
   Output,
   ViewEncapsulation,
@@ -16,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { EventifyEvent } from '@eventify-org/common-api';
 
 @Component({
   selector: 'eventify-org-toolbar',
@@ -30,6 +32,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatBadgeModule,
     MatMenuModule,
+    NgFor,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
@@ -38,6 +41,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class ToolbarComponent implements OnInit {
   @HostBinding('class.c-eventify-org-toolbar') class = true;
+
+  @Input() cart?: EventifyEvent[] | null;
 
   @Output() formValueChanges = new EventEmitter();
 

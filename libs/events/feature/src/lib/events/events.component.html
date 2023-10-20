@@ -1,12 +1,14 @@
-<eventify-org-toolbar
-  class="sticky top-0 z-20"
-  (formValueChanges)="onFormValueChanges($event)"
-></eventify-org-toolbar>
 <ng-container
   *ngIf="{
-    events: events$ | async
+    events: events$ | async,
+    cart: cart$ | async
   } as config"
 >
+  <eventify-org-toolbar
+    class="sticky top-0 z-20"
+    [cart]="config.cart"
+    (formValueChanges)="onFormValueChanges($event)"
+  ></eventify-org-toolbar>
   <div *ngFor="let event of config.events">
     <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
       <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
@@ -23,7 +25,7 @@
           [location]="event.venue.direction"
           [startingDate]="event.startTime"
           [endingDate]="event.endTime"
-          (addToCard)="onAddToCard(event._id)"
+          (addToCard)="onAddToCard(event)"
         ></eventify-org-event-card>
       </ng-container>
     </div>

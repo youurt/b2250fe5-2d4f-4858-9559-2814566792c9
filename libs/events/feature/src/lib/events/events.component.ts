@@ -75,6 +75,8 @@ export class EventsComponent implements OnInit {
     )
   );
 
+  protected cart$ = this.eventsFacade.$cart;
+
   ngOnInit(): void {
     this.eventsFacade.loadEvents(); // initial load
   }
@@ -83,7 +85,7 @@ export class EventsComponent implements OnInit {
     this.searchTerm = searchTerm.toLowerCase();
   }
 
-  onAddToCard(id: string) {
-    console.log(id);
+  onAddToCard(event: EventifyEvent) {
+    this.eventsFacade.addEventToCart(event); // initial load
   }
 }

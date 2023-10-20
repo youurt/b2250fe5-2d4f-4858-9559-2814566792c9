@@ -14,3 +14,13 @@ export const loadEventsSuccess = createAction(
 export const loadEventsFailure = createAction(
   '[Events/API] Load Events Failure'
 );
+export const addEventToCart = createAction(
+  '[Events/API] Add Event To Cart',
+  props<{ event: EventifyEvent }>()
+);
+export const addEventToCartSuccess = createAction(
+  '[Events/API] Add Event To Cart Success'
+);
+export const addEventToCartFailure = createAction(
+  '[Events/API] Add Event To Cart Failure'
+);

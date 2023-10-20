@@ -9,7 +9,7 @@ import {
 export const selectEventsState =
   createFeatureSelector<EventsState>(EVENTS_FEATURE_KEY);
 
-const { selectAll } = eventifyEventsAdapter.getSelectors();
+const { selectAll: selectAllEvents } = eventifyEventsAdapter.getSelectors();
 
 const eventifyEventsState = createSelector(
   selectEventsState,
@@ -17,5 +17,13 @@ const eventifyEventsState = createSelector(
 );
 
 export const getEvents = createSelector(eventifyEventsState, (state) =>
-  selectAll(state)
+  selectAllEvents(state)
+);
+
+const { selectAll: selectAllCart } = eventifyEventsAdapter.getSelectors();
+
+const cartState = createSelector(selectEventsState, (state) => state.cart);
+
+export const getCart = createSelector(cartState, (state) =>
+  selectAllCart(state)
 );
