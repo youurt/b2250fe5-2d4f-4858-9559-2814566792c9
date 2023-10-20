@@ -8,18 +8,22 @@
   } as config"
 >
   <div *ngFor="let event of config.events">
-    <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
-      {{ event[0] | date }}
-    </div>
+    <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
+      <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
+        {{ event[0] | date }}
+      </div>
+    </ng-container>
     <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-4 sm:px-8">
-      <eventify-org-event-card
-        *ngFor="let event of event[1]"
-        [title]="event.title"
-        [imagePath]="event.flyerFront"
-        [location]="event.venue.direction"
-        [startingDate]="event.startTime"
-        [endingDate]="event.endTime"
-      ></eventify-org-event-card>
+      <ng-container *ngFor="let event of event[1]">
+        <eventify-org-event-card
+          *ngIf="event.title.toLowerCase().startsWith(searchTerm)"
+          [title]="event.title"
+          [imagePath]="event.flyerFront"
+          [location]="event.venue.direction"
+          [startingDate]="event.startTime"
+          [endingDate]="event.endTime"
+        ></eventify-org-event-card>
+      </ng-container>
     </div>
   </div>
 </ng-container>

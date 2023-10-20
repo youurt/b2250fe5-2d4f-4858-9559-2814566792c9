@@ -3,6 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  Pipe,
+  PipeTransform,
   ViewEncapsulation,
   inject,
 } from '@angular/core';
@@ -12,6 +14,18 @@ import { ToolbarComponent } from '@eventify-org/common-ui';
 import { EventCardComponent } from '@eventify-org/events-ui';
 import { EventsFacade } from '@eventify-org/events/data-access';
 import { map } from 'rxjs';
+
+@Pipe({
+  name: 'eventifyOrgEventTitleCheckPipe',
+  standalone: true,
+})
+export class EventTitleCheckPipe implements PipeTransform {
+  transform(events: [string, EventifyEvent[]], searchTerm: string): boolean {
+    return events[1].some((event) => {
+      return event.title.toLowerCase().startsWith(searchTerm);
+    });
+  }
+}
 
 @Component({
   selector: 'eventify-org-events',
@@ -25,6 +39,7 @@ import { map } from 'rxjs';
     ToolbarComponent,
     EventCardComponent,
     DatePipe,
+    EventTitleCheckPipe,
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
@@ -33,6 +48,8 @@ import { map } from 'rxjs';
 })
 export class EventsComponent implements OnInit {
   private eventsFacade = inject(EventsFacade);
+
+  searchTerm = '';
 
   /**
    * The list of events.
@@ -62,7 +79,8 @@ export class EventsComponent implements OnInit {
     this.eventsFacade.loadEvents(); // initial load
   }
 
-  onFormValueChanges(value: string) {
-    console.log(value);
+  onFormValueChanges(searchTerm: string) {
+    console.log(searchTerm);
+    this.searchTerm = searchTerm.toLowerCase();
   }
 }
