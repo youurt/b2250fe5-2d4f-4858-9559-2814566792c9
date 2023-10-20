@@ -1,41 +1,42 @@
-import { Action } from '@ngrx/store';
-
+import { createEvent } from '@eventify-org/common-api';
 import * as EventsActions from './events.actions';
-import { EventsEntity } from './events.models';
-import {
-  EventsState,
-  initialEventsState,
-  eventsReducer,
-} from './events.reducer';
+import { EventsState, eventsReducer, initialEventsState } from './events.reducer';
 
 describe('Events Reducer', () => {
-  const createEventsEntity = (id: string, name = ''): EventsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  describe('Load Events actions', () => {
+    const eventifyEvents = () => {
+      const action = EventsActions.loadEvents();
+      return eventsReducer(initialEventsState, action);
+    };
 
-  describe('valid Events actions', () => {
-    it('loadEventsSuccess should return the list of known Events', () => {
-      const events = [
-        createEventsEntity('PRODUCT-AAA'),
-        createEventsEntity('PRODUCT-zzz'),
-      ];
-      const action = EventsActions.loadEventsSuccess({ events });
+    it('loadEvents should set loading state', () => {
+      expect(initialEventsState.eventifyEvents.loading).toBe(false);
 
-      const result: EventsState = eventsReducer(initialEventsState, action);
+      const result = eventifyEvents();
 
-      expect(result.loaded).toBe(true);
-      expect(result.ids.length).toBe(2);
+      expect(result.eventifyEvents.loading).toBe(true);
     });
-  });
 
-  describe('unknown action', () => {
-    it('should return the previous state', () => {
-      const action = {} as Action;
+    it('loadEventsSuccess should reset loading state and add events in store', () => {
+      const loadEventsResult: EventsState = eventifyEvents();
 
+      expect(loadEventsResult.eventifyEvents.loading).toBe(true);
+      expect(loadEventsResult.eventifyEvents.ids.length).toBe(0);
+
+      const firstEvent = createEvent();
+      const secondEvent = createEvent({ _id: '2' });
+      const action = EventsActions.loadEventsSuccess({
+        eventifyEvents: [firstEvent, secondEvent]
+      });
       const result = eventsReducer(initialEventsState, action);
 
-      expect(result).toBe(initialEventsState);
+      expect(result.eventifyEvents.loading).toBe(false);
+      expect(result.eventifyEvents.entities).toStrictEqual({
+        [firstEvent._id]: firstEvent,
+        [secondEvent._id]: secondEvent
+      });
     });
+
+    // @TODO: Add more tests in the future!
   });
 });

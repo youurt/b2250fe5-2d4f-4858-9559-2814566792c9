@@ -108,6 +108,4 @@ const reducer = createReducer(
   }))
 );
 
-export const eventsReducer = (state: EventsState | undefined, action: Action) => {
-  return reducer(state, action);
-};
+export const eventsReducer = (state: EventsState | undefined, action: Action) => reducer(state, action);

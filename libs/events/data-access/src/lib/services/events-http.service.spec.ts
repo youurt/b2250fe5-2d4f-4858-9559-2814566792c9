@@ -20,10 +20,6 @@ describe('EventsHttpService', () => {
     httpMock.verify();
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   describe('getEvents', () => {
     it('should return an Observable of events', () => {
       const mockEvents = [createEvent({ _id: '1', title: 'foo' }), createEvent({ _id: '2', title: 'bar' })];
