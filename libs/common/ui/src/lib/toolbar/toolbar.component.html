@@ -21,7 +21,9 @@
   </button>
   <mat-menu #menu="matMenu">
     <ng-container *ngFor="let item of cart">
-      <button mat-menu-item>{{ item.title }}</button>
+      <button (click)="onRemoveFromCart(item)" mat-menu-item>
+        remove {{ item.title }} from cart
+      </button>
     </ng-container>
   </mat-menu>
 </mat-toolbar>

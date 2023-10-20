@@ -46,6 +46,8 @@ export class ToolbarComponent implements OnInit {
 
   @Output() formValueChanges = new EventEmitter();
 
+  @Output() removeFromCart = new EventEmitter();
+
   toolbarForm = new FormGroup({
     search: new FormControl(''),
   });
@@ -54,5 +56,10 @@ export class ToolbarComponent implements OnInit {
     this.toolbarForm.get('search')?.valueChanges.subscribe((value) => {
       this.formValueChanges.emit(value);
     });
+  }
+
+  onRemoveFromCart(item: EventifyEvent) {
+    this.cart = this.cart?.filter((cartItem) => cartItem._id !== item._id);
+    this.removeFromCart.emit(item);
   }
 }

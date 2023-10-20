@@ -78,7 +78,7 @@ export class EventsComponent implements OnInit {
   protected cart$ = this.eventsFacade.$cart;
 
   ngOnInit(): void {
-    this.eventsFacade.loadEvents(); // initial load
+    this.eventsFacade.loadEvents();
   }
 
   onFormValueChanges(searchTerm: string) {
@@ -86,6 +86,10 @@ export class EventsComponent implements OnInit {
   }
 
   onAddToCard(event: EventifyEvent) {
-    this.eventsFacade.addEventToCart(event); // initial load
+    this.eventsFacade.addEventToCart(event);
+  }
+
+  onRemoveFromCart(event: EventifyEvent) {
+    this.eventsFacade.removeEventFromCart(event);
   }
 }

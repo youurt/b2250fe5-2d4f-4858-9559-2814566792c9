@@ -80,6 +80,25 @@ const reducer = createReducer(
   on(EventsActions.addEventToCartFailure, (state) => ({
     ...state,
     eventifyEvents: { ...state.eventifyEvents, adding: false },
+  })),
+  on(EventsActions.removeEventFromCart, (state, { event }) => ({
+    ...state,
+    eventifyEvents: eventifyEventsAdapter.addOne(event, {
+      ...state.eventifyEvents,
+      adding: true,
+    }),
+    cart: cartAdapter.removeOne(event._id, {
+      ...state.cart,
+      adding: true,
+    }),
+  })),
+  on(EventsActions.removeEventFromCartSuccess, (state) => ({
+    ...state,
+    cart: { ...state.cart, adding: false },
+  })),
+  on(EventsActions.removeEventFromCartFailure, (state) => ({
+    ...state,
+    cart: { ...state.cart, adding: false },
   }))
 );
 

@@ -25,4 +25,8 @@ export class EventsFacade {
   addEventToCart(event: EventifyEvent) {
     this.store.dispatch(EventsActions.addEventToCart({ event }));
   }
+
+  removeEventFromCart(event: EventifyEvent) {
+    this.store.dispatch(EventsActions.removeEventFromCart({ event }));
+  }
 }

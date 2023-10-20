@@ -24,3 +24,13 @@ export const addEventToCartSuccess = createAction(
 export const addEventToCartFailure = createAction(
   '[Events/API] Add Event To Cart Failure'
 );
+export const removeEventFromCart = createAction(
+  '[Events/API] Remove Event From Cart',
+  props<{ event: EventifyEvent }>()
+);
+export const removeEventFromCartSuccess = createAction(
+  '[Events/API] Remove Event From Cart Success'
+);
+export const removeEventFromCartFailure = createAction(
+  '[Events/API] Remove Event From Cart Failure'
+);

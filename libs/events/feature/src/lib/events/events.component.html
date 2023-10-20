@@ -8,6 +8,7 @@
     class="sticky top-0 z-20"
     [cart]="config.cart"
     (formValueChanges)="onFormValueChanges($event)"
+    (removeFromCart)="onRemoveFromCart($event)"
   ></eventify-org-toolbar>
   <div>
     <div *ngFor="let event of config.events">
