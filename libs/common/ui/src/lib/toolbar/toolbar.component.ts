@@ -12,11 +12,13 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { EventifyEvent } from '@eventify-org/common-api';
 
 @Component({
@@ -33,6 +35,8 @@ import { EventifyEvent } from '@eventify-org/common-api';
     MatBadgeModule,
     MatMenuModule,
     NgFor,
+    MatTooltipModule,
+    MatDividerModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],

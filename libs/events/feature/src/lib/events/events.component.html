@@ -13,11 +13,14 @@
   <div>
     <div *ngFor="let event of config.events">
       <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
-        <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
+        <div
+          class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center"
+          style="top: 3.9rem; background-color: #212121"
+        >
           {{ event[0] | date }}
         </div>
       </ng-container>
-      <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-4 sm:px-8">
+      <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
         <ng-container *ngFor="let event of event[1]">
           <eventify-org-event-card
             *ngIf="event.title.toLowerCase().includes(searchTerm)"

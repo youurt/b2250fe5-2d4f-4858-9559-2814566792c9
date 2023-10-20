@@ -1,17 +1,22 @@
 <mat-card>
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{ title }}</mat-card-title>
+    <div mat-card-avatar class="c-event-card__header-image"></div>
+    <mat-card-title class="c-event-card__title truncate max-w-xs">{{
+      title
+    }}</mat-card-title>
   </mat-card-header>
-  <img
-    mat-card-image
-    (error)="onImageError($event)"
-    [src]="imagePath ?? fallbackImagePath"
-    alt="Photo to event {{ title }}"
-  />
-  <mat-card-actions>
+  <div class="flex justify-center">
+    <img
+      mat-card-image
+      (error)="onImageError($event)"
+      [src]="imagePath ?? fallbackImagePath"
+      alt="Photo to event {{ title }}"
+    />
+  </div>
+
+  <mat-card-actions class="flex justify-center flex-col gap-3">
     <div>
-      <mat-chip-listbox>
+      <mat-chip-listbox class="mb-6">
         <mat-chip-option [selectable]="false"
           >Starts: {{ startingDate | date }}</mat-chip-option
         >
@@ -19,18 +24,22 @@
           >Ends: {{ endingDate | date }}</mat-chip-option
         >
       </mat-chip-listbox>
-      <div>
+      <div class="flex gap-3 justify-end items-center">
         <button
           type="button"
           mat-mini-fab
-          aria-label="Example icon button with a delete icon"
+          matTooltip="Add this event to your cart!"
           (click)="addToCard.emit()"
         >
           <mat-icon>add</mat-icon>
         </button>
-        <a [href]="location.direction" mat-stroked-button color="accent">{{
-          location.name
-        }}</a>
+        <a
+          mat-mini-fab
+          [href]="location.direction"
+          [matTooltip]="'Check out the location: ' + location.name + '!'"
+        >
+          <mat-icon>location_on</mat-icon>
+        </a>
       </div>
     </div>
   </mat-card-actions>

@@ -1,8 +1,37 @@
-// .example-card {
-//   max-width: 400px;
-// }
+/* ==========================================================================
+   EVENT CARD
 
-// .example-header-image {
-//   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-//   background-size: cover;
-// }
+   - Event Card
+   ========================================================================== */
+
+
+
+
+
+/* Event Card
+   ========================================================================== */
+
+.c-event-card {
+  img {
+    float: left;
+    width:  400px;
+    height: 400px;
+    object-fit: cover;
+}
+  &__header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+
+    .mat-mdc-card-header {
+      height: 8rem;
+    }
+
+    .mat-mdc-card-title {
+        font-size: 0.8rem;
+        text-wrap: pretty;
+    }
+ }
+
+
+

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { EventifyVenue } from '@eventify-org/common-api';
 
 @Component({
@@ -24,6 +25,7 @@ import { EventifyVenue } from '@eventify-org/common-api';
     MatIconModule,
     MatChipsModule,
     NgIf,
+    MatTooltipModule,
   ],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
@@ -31,7 +33,7 @@ import { EventifyVenue } from '@eventify-org/common-api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventCardComponent {
-  @HostBinding('class.c-eventify-org-event-card') class = true;
+  @HostBinding('class.c-event-card') class = true;
 
   /**
    * The title of the event.
