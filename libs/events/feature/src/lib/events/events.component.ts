@@ -31,6 +31,21 @@ export class EventTitleCheckPipe implements PipeTransform {
   }
 }
 
+/**
+ * Checks if the event title contains the search term. This pipe is used in the template of event cards.
+ *
+ * @returns `true` if the event title contains the search term, `false` otherwise.
+ */
+@Pipe({
+  name: 'eventifyOrgEventCardCheckPipe',
+  standalone: true
+})
+export class EventCardCheckPipe implements PipeTransform {
+  transform(title: string, searchTerm: string): boolean {
+    return title.toLowerCase().includes(searchTerm);
+  }
+}
+
 @Component({
   selector: 'eventify-org-events',
   standalone: true,
@@ -43,7 +58,8 @@ export class EventTitleCheckPipe implements PipeTransform {
     ToolbarComponent,
     EventCardComponent,
     DatePipe,
-    EventTitleCheckPipe
+    EventTitleCheckPipe,
+    EventCardCheckPipe
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],

@@ -19,7 +19,7 @@
     <div class="grid mb-4 md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
       <ng-container *ngFor="let event of event[1]">
         <eventify-org-event-card
-          *ngIf="event.title.toLowerCase().includes(searchTerm)"
+          *ngIf="event.title | eventifyOrgEventCardCheckPipe : searchTerm"
           [id]="event._id"
           [title]="event.title"
           [imagePath]="event.flyerFront"
