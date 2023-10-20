@@ -9,25 +9,27 @@
     [cart]="config.cart"
     (formValueChanges)="onFormValueChanges($event)"
   ></eventify-org-toolbar>
-  <div *ngFor="let event of config.events">
-    <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
-      <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
-        {{ event[0] | date }}
-      </div>
-    </ng-container>
-    <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-4 sm:px-8">
-      <ng-container *ngFor="let event of event[1]">
-        <eventify-org-event-card
-          *ngIf="event.title.toLowerCase().includes(searchTerm)"
-          [id]="event._id"
-          [title]="event.title"
-          [imagePath]="event.flyerFront"
-          [location]="event.venue.direction"
-          [startingDate]="event.startTime"
-          [endingDate]="event.endTime"
-          (addToCard)="onAddToCard(event)"
-        ></eventify-org-event-card>
+  <div>
+    <div *ngFor="let event of config.events">
+      <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
+        <div class="p-2 mb-4 sticky z-10 bg-green-900" style="top: 3.9rem">
+          {{ event[0] | date }}
+        </div>
       </ng-container>
+      <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-4 sm:px-8">
+        <ng-container *ngFor="let event of event[1]">
+          <eventify-org-event-card
+            *ngIf="event.title.toLowerCase().includes(searchTerm)"
+            [id]="event._id"
+            [title]="event.title"
+            [imagePath]="event.flyerFront"
+            [location]="event.venue"
+            [startingDate]="event.startTime"
+            [endingDate]="event.endTime"
+            (addToCard)="onAddToCard(event)"
+          ></eventify-org-event-card>
+        </ng-container>
+      </div>
     </div>
   </div>
 </ng-container>

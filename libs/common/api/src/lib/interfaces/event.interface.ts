@@ -1,4 +1,4 @@
-interface EventifyVenue {
+export interface EventifyVenue {
   id: string;
   name: string;
   contentUrl: string;

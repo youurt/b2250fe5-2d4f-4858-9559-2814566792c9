@@ -8,22 +8,23 @@
     [src]="imagePath ?? fallbackImagePath"
     alt="Photo to event {{ title }}"
   />
-  <mat-card-content>
-    <div>
-      {{ startingDate | date }}
-    </div>
-    <div>
-      {{ endingDate | date }}
-    </div>
-  </mat-card-content>
   <mat-card-actions>
-    <button
-      type="button"
-      mat-mini-fab
-      aria-label="Example icon button with a delete icon"
-      (click)="addToCard.emit()"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
+    <div>
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip-option>Starts: {{ startingDate | date }}</mat-chip-option>
+        <mat-chip-option>Ends: {{ endingDate | date }}</mat-chip-option>
+      </mat-chip-listbox>
+      <button
+        type="button"
+        mat-mini-fab
+        aria-label="Example icon button with a delete icon"
+        (click)="addToCard.emit()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <a [href]="location.direction" mat-stroked-button color="accent">{{
+        location.name
+      }}</a>
+    </div>
   </mat-card-actions>
 </mat-card>

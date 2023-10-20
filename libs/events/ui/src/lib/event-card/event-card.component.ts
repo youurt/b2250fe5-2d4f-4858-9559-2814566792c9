@@ -10,12 +10,20 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { EventifyVenue } from '@eventify-org/common-api';
 
 @Component({
   selector: 'eventify-org-event-card',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, DatePipe, MatIconModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    DatePipe,
+    MatIconModule,
+    MatChipsModule,
+  ],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -37,7 +45,7 @@ export class EventCardComponent {
   /**
    * The location of the event.
    */
-  @Input({ required: true }) location!: string;
+  @Input({ required: true }) location!: EventifyVenue;
 
   /**
    * The starting date of the event.
