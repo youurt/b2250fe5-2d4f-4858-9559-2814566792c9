@@ -2,7 +2,9 @@
   "name": "@eventify-org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "serve": "nx serve eventify-frontend"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.2.10",
