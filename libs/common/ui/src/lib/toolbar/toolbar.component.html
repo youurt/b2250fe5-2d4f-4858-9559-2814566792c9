@@ -14,8 +14,9 @@
     type="button"
     mat-mini-fab
     aria-label="Example icon button with a delete icon"
-    [matBadge]="cart?.length"
+    [matBadge]="cart?.length || ''"
     [matMenuTriggerFor]="menu"
+    [disabled]="!cart?.length"
   >
     <mat-icon>event</mat-icon>
   </button>
