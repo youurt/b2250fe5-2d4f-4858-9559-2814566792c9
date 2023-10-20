@@ -113,7 +113,7 @@ export class EventsComponent implements OnInit {
    *
    * @param event The `EventifyEvent` to add to the cart.
    */
-  onAddToCard(event: EventifyEvent) {
+  onAddToCart(event: EventifyEvent) {
     this.eventsFacade.addEventToCart(event);
   }
 

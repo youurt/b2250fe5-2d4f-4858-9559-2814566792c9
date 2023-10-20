@@ -55,7 +55,7 @@ export class EventCardComponent {
   /**
    * Emits when the add to cart button is clicked.
    */
-  @Output() addToCard = new EventEmitter<void>();
+  @Output() addToCart = new EventEmitter<void>();
 
   /**
    * The fallback image path.
