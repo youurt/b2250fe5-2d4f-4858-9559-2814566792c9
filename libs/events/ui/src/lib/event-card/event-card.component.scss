@@ -13,11 +13,14 @@
 
 .c-event-card {
 
-  img {
-    float: left;
-    object-fit: cover;
-    width: 400px;
-    height: 400px;
+  &__image {
+
+    img {
+      float: left;
+      object-fit: cover;
+      width: 400px;
+      height: 400px;
+    }
   }
 
   &__header-image {

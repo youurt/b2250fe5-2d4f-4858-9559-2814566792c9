@@ -2,6 +2,7 @@ import { AsyncPipe, DatePipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  HostBinding,
   OnInit,
   Pipe,
   PipeTransform,
@@ -53,6 +54,8 @@ export class EventTitleCheckPipe implements PipeTransform {
 })
 export class EventsComponent implements OnInit {
   private eventsFacade = inject(EventsFacade);
+
+  @HostBinding('class.c-events') class = true;
 
   /**
    * The search term.

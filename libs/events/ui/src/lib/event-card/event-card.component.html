@@ -1,18 +1,17 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="c-event-card__header-image"></div>
-    <mat-card-title class="c-event-card__title truncate max-w-xs">{{ title }}</mat-card-title>
+    <mat-card-title class="c-event-card__title">{{ title }}</mat-card-title>
   </mat-card-header>
-  <div class="flex justify-center">
+  <div class="c-event-card__image flex">
     <img
-      mat-card-image
-      (error)="onImageError($event)"
       [src]="imagePath ?? fallbackImagePath"
+      mat-card-image
       alt="Photo to event {{ title }}"
+      (error)="onImageError($event)"
     />
   </div>
-
-  <mat-card-actions class="flex justify-center flex-col gap-3">
+  <mat-card-actions class="gap-3">
     <div>
       <mat-chip-listbox class="mb-6">
         <mat-chip-option [selectable]="false">Starts: {{ startingDate | date }}</mat-chip-option>
