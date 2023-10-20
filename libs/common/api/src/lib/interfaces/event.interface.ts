@@ -33,5 +33,6 @@ export interface EventifyEvent {
   city: string;
   country: string;
   private: boolean;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   __v: number;
 }

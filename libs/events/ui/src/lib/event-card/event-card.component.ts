@@ -68,6 +68,8 @@ export class EventCardComponent {
    * @param event The event.
    */
   protected onImageError(event: Event) {
-    event.target && (event.target as HTMLImageElement).setAttribute('src', this.fallbackImagePath);
+    if (event.target) {
+      (event.target as HTMLImageElement).setAttribute('src', this.fallbackImagePath);
+    }
   }
 }

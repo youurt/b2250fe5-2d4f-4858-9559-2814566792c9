@@ -1,4 +1,5 @@
 import { ComponentHarness } from '@angular/cdk/testing';
+import { MatBadgeHarness } from '@angular/material/badge/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 import { MatMenuHarness } from '@angular/material/menu/testing';
 import { MatToolbarHarness } from '@angular/material/toolbar/testing';
@@ -25,5 +26,12 @@ export class ToolbarComponentHarness extends ComponentHarness {
    */
   shoppingCartMenu() {
     return this.locatorFor(MatMenuHarness)();
+  }
+
+  /**
+   * @returns The badge harness or `null` if there is no badge.
+   */
+  badge() {
+    return this.locatorForOptional(MatBadgeHarness)();
   }
 }

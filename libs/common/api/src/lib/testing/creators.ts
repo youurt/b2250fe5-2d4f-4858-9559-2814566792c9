@@ -32,6 +32,7 @@ export const createEvent = (data: Partial<EventifyEvent> = {}): EventifyEvent =>
   city: 'My Awesome City',
   country: 'My Awesome Country',
   private: false,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   __v: 0,
   ...data
 });
