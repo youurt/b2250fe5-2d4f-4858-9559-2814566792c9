@@ -10,21 +10,27 @@
   />
   <mat-card-actions>
     <div>
-      <mat-chip-listbox aria-label="Fish selection">
-        <mat-chip-option>Starts: {{ startingDate | date }}</mat-chip-option>
-        <mat-chip-option>Ends: {{ endingDate | date }}</mat-chip-option>
+      <mat-chip-listbox>
+        <mat-chip-option [selectable]="false"
+          >Starts: {{ startingDate | date }}</mat-chip-option
+        >
+        <mat-chip-option [selectable]="false"
+          >Ends: {{ endingDate | date }}</mat-chip-option
+        >
       </mat-chip-listbox>
-      <button
-        type="button"
-        mat-mini-fab
-        aria-label="Example icon button with a delete icon"
-        (click)="addToCard.emit()"
-      >
-        <mat-icon>add</mat-icon>
-      </button>
-      <a [href]="location.direction" mat-stroked-button color="accent">{{
-        location.name
-      }}</a>
+      <div>
+        <button
+          type="button"
+          mat-mini-fab
+          aria-label="Example icon button with a delete icon"
+          (click)="addToCard.emit()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <a [href]="location.direction" mat-stroked-button color="accent">{{
+          location.name
+        }}</a>
+      </div>
     </div>
   </mat-card-actions>
 </mat-card>
