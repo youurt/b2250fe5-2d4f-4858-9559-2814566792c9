@@ -38,30 +38,24 @@ export class EventsComponent implements OnInit {
    * The list of events.
    */
   protected events$ = this.eventsFacade.$events.pipe(
-    map((events) => {
-      const obj: Record<string, EventifyEvent[]> = {};
+    map((events) =>
+      Object.entries(
+        events
+          .filter((event) => event.startTime !== undefined)
+          .reduce((acc, event) => {
+            const key = event.startTime.split('T')[0];
 
-      const sanitizedEvents = events.filter(
-        (event) => event.startTime !== undefined
-      );
+            if (!acc[key]) {
+              acc[key] = [];
+            }
+            acc[key].push(event);
 
-      const grouped = sanitizedEvents.reduce((acc, event) => {
-        const key = event.startTime.split('T')[0];
-
-        if (!acc[key]) {
-          acc[key] = [];
-        }
-        acc[key].push(event);
-        return acc;
-      }, obj);
-
-      const groupedArray = Object.entries(grouped);
-      const sorted = groupedArray.sort((a, b) => {
+            return acc;
+          }, <Record<string, EventifyEvent[]>>{})
+      ).sort((a, b) => {
         return new Date(a[0]).getTime() - new Date(b[0]).getTime();
-      });
-
-      return sorted;
-    })
+      })
+    )
   );
 
   ngOnInit(): void {
