@@ -17,12 +17,8 @@ export class EventsEffects {
         run: () =>
           this.eventsHttpService
             .getEventifyEvents()
-            .pipe(
-              map((eventifyEvents) =>
-                EventsActions.loadEventsSuccess({ eventifyEvents })
-              )
-            ),
-        onError: () => EventsActions.loadEventsFailure(),
+            .pipe(map(eventifyEvents => EventsActions.loadEventsSuccess({ eventifyEvents }))),
+        onError: () => EventsActions.loadEventsFailure()
       })
     )
   );

@@ -15,10 +15,7 @@
         "main": "apps/eventify-frontend/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/eventify-frontend/tsconfig.app.json",
-        "assets": [
-          "apps/eventify-frontend/src/favicon.ico",
-          "apps/eventify-frontend/src/assets"
-        ],
+        "assets": ["apps/eventify-frontend/src/favicon.ico", "apps/eventify-frontend/src/assets"],
         "styles": ["apps/eventify-frontend/src/styles.scss"],
         "scripts": []
       },
@@ -71,10 +68,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/eventify-frontend/**/*.ts",
-          "apps/eventify-frontend/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/eventify-frontend/**/*.ts", "apps/eventify-frontend/**/*.html"]
       }
     },
     "test": {

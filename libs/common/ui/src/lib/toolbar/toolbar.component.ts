@@ -7,7 +7,7 @@ import {
   Input,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -36,34 +36,51 @@ import { EventifyEvent } from '@eventify-org/common-api';
     MatMenuModule,
     NgFor,
     MatTooltipModule,
-    MatDividerModule,
+    MatDividerModule
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent implements OnInit {
   @HostBinding('class.c-eventify-org-toolbar') class = true;
 
+  /**
+   * The cart.
+   */
   @Input() cart?: EventifyEvent[] | null;
 
+  /**
+   * Emits when the form value changes.
+   */
   @Output() formValueChanges = new EventEmitter();
 
+  /**
+   * Emits when an item is removed from the cart.
+   */
   @Output() removeFromCart = new EventEmitter();
 
-  toolbarForm = new FormGroup({
-    search: new FormControl(''),
+  /**
+   * The toolbar form.
+   */
+  protected toolbarForm = new FormGroup({
+    search: new FormControl('')
   });
 
   ngOnInit(): void {
-    this.toolbarForm.get('search')?.valueChanges.subscribe((value) => {
+    this.toolbarForm.get('search')?.valueChanges.subscribe(value => {
       this.formValueChanges.emit(value);
     });
   }
 
-  onRemoveFromCart(item: EventifyEvent) {
-    this.cart = this.cart?.filter((cartItem) => cartItem._id !== item._id);
-    this.removeFromCart.emit(item);
+  /**
+   * Handles removing an item from the cart.
+   *
+   * @param item The item to remove from the cart.
+   */
+  protected onRemoveFromCart(item: EventifyEvent) {
+    this.cart = this.cart?.filter(cartItem => cartItem._id !== item._id); // first, remove the item from the cart
+    this.removeFromCart.emit(item); // then, emit the event
   }
 }

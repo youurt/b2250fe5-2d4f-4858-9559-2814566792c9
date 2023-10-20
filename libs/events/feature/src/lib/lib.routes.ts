@@ -11,8 +11,8 @@ export const eventsRoutes: Route[] = [
     children: [
       {
         path: '',
-        component: EventsComponent,
-      },
-    ],
-  },
+        component: EventsComponent
+      }
+    ]
+  }
 ];

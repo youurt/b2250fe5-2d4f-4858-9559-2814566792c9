@@ -1,9 +1,7 @@
 <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="c-event-card__header-image"></div>
-    <mat-card-title class="c-event-card__title truncate max-w-xs">{{
-      title
-    }}</mat-card-title>
+    <mat-card-title class="c-event-card__title truncate max-w-xs">{{ title }}</mat-card-title>
   </mat-card-header>
   <div class="flex justify-center">
     <img
@@ -17,27 +15,14 @@
   <mat-card-actions class="flex justify-center flex-col gap-3">
     <div>
       <mat-chip-listbox class="mb-6">
-        <mat-chip-option [selectable]="false"
-          >Starts: {{ startingDate | date }}</mat-chip-option
-        >
-        <mat-chip-option [selectable]="false"
-          >Ends: {{ endingDate | date }}</mat-chip-option
-        >
+        <mat-chip-option [selectable]="false">Starts: {{ startingDate | date }}</mat-chip-option>
+        <mat-chip-option [selectable]="false">Ends: {{ endingDate | date }}</mat-chip-option>
       </mat-chip-listbox>
       <div class="flex gap-3 justify-end items-center">
-        <button
-          type="button"
-          mat-mini-fab
-          matTooltip="Add this event to your cart!"
-          (click)="addToCard.emit()"
-        >
+        <button type="button" mat-mini-fab matTooltip="Add this event to your cart!" (click)="addToCard.emit()">
           <mat-icon>add</mat-icon>
         </button>
-        <a
-          mat-mini-fab
-          [href]="location.direction"
-          [matTooltip]="'Check out the location: ' + location.name + '!'"
-        >
+        <a mat-mini-fab [href]="location.direction" [matTooltip]="'Check out the location: ' + location.name + '!'">
           <mat-icon>location_on</mat-icon>
         </a>
       </div>

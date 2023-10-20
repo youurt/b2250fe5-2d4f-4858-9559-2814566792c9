@@ -1,7 +1,4 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { createEvent } from '@eventify-org/common-api';
 import { EventsHttpService } from './events-http.service';
@@ -13,7 +10,7 @@ describe('EventsHttpService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [EventsHttpService],
+      providers: [EventsHttpService]
     });
     service = TestBed.inject(EventsHttpService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -29,12 +26,9 @@ describe('EventsHttpService', () => {
 
   describe('getEvents', () => {
     it('should return an Observable of events', () => {
-      const mockEvents = [
-        createEvent({ _id: '1', title: 'foo' }),
-        createEvent({ _id: '2', title: 'bar' }),
-      ];
+      const mockEvents = [createEvent({ _id: '1', title: 'foo' }), createEvent({ _id: '2', title: 'bar' })];
 
-      service.getEventifyEvents().subscribe((events) => {
+      service.getEventifyEvents().subscribe(events => {
         expect(events).toEqual(mockEvents);
       });
 

@@ -2,12 +2,7 @@
   <form [formGroup]="toolbarForm" class="c-eventify-org-toolbar__form">
     <mat-form-field class="example-full-width">
       <span matPrefix><mat-icon>search</mat-icon></span>
-      <input
-        formControlName="search"
-        placeholder="Search"
-        type="text"
-        matInput
-      />
+      <input formControlName="search" placeholder="Search" type="text" matInput />
     </mat-form-field>
   </form>
   <button
@@ -24,9 +19,7 @@
   <mat-menu #menu="matMenu">
     <div class="flex flex-col gap-2">
       <ng-container *ngFor="let item of cart; let isLast = last">
-        <button (click)="onRemoveFromCart(item)" mat-menu-item>
-          remove {{ item.title }} from cart
-        </button>
+        <button type="button" (click)="onRemoveFromCart(item)" mat-menu-item>remove {{ item.title }} from cart</button>
         <mat-divider *ngIf="!isLast"></mat-divider>
       </ng-container>
     </div>

@@ -21,90 +21,93 @@ export interface EventsPartialState {
   readonly [EVENTS_FEATURE_KEY]: EventsState;
 }
 
-export const eventifyEventsAdapter: EntityAdapter<EventifyEvent> =
-  createEntityAdapter<EventifyEvent>({
-    selectId: (eventifyEvent) => eventifyEvent._id,
-  });
+export const eventifyEventsAdapter: EntityAdapter<EventifyEvent> = createEntityAdapter<EventifyEvent>({
+  selectId: eventifyEvent => eventifyEvent._id
+});
 
-export const cartAdapter: EntityAdapter<EventifyEvent> =
-  createEntityAdapter<EventifyEvent>({
-    selectId: (eventifyEvent) => eventifyEvent._id,
-  });
+export const cartAdapter: EntityAdapter<EventifyEvent> = createEntityAdapter<EventifyEvent>({
+  selectId: eventifyEvent => eventifyEvent._id
+});
 
-export const initialEventifyEventsState: EventifyEventsState =
-  eventifyEventsAdapter.getInitialState({
-    loading: false,
-  });
+export const initialEventifyEventsState: EventifyEventsState = eventifyEventsAdapter.getInitialState({
+  loading: false
+});
 
 export const initialCartState: EventifyCartState = cartAdapter.getInitialState({
-  adding: false,
+  adding: false
 });
 
 export const initialEventsState: EventsState = {
   eventifyEvents: initialEventifyEventsState,
-  cart: initialCartState,
+  cart: initialCartState
 };
 
 const reducer = createReducer(
   initialEventsState,
-  on(EventsActions.loadEvents, (state) => ({
+  /**
+   * Load Events Api Actions.
+   */
+  on(EventsActions.loadEvents, state => ({
     ...state,
-    eventifyEvents: { ...state.eventifyEvents, loading: true },
+    eventifyEvents: { ...state.eventifyEvents, loading: true }
   })),
   on(EventsActions.loadEventsSuccess, (state, { eventifyEvents }) => ({
     ...state,
     eventifyEvents: eventifyEventsAdapter.setMany(eventifyEvents, {
       ...state.eventifyEvents,
-      loading: false,
-    }),
+      loading: false
+    })
   })),
-  on(EventsActions.loadEventsSuccess, (state) => ({
+  on(EventsActions.loadEventsSuccess, state => ({
     ...state,
-    eventifyEvents: { ...state.eventifyEvents, loading: false },
+    eventifyEvents: { ...state.eventifyEvents, loading: false }
   })),
+  /**
+   * Add Event To Cart Api Actions.
+   */
   on(EventsActions.addEventToCart, (state, { event }) => ({
     ...state,
     cart: cartAdapter.addOne(event, {
       ...state.cart,
-      adding: true,
+      adding: true
     }),
     eventifyEvents: eventifyEventsAdapter.removeOne(event._id, {
       ...state.eventifyEvents,
-      adding: true,
-    }),
+      adding: true
+    })
   })),
-  on(EventsActions.addEventToCartSuccess, (state) => ({
+  on(EventsActions.addEventToCartSuccess, state => ({
     ...state,
-    eventifyEvents: { ...state.eventifyEvents, adding: false },
+    eventifyEvents: { ...state.eventifyEvents, adding: false }
   })),
-  on(EventsActions.addEventToCartFailure, (state) => ({
+  on(EventsActions.addEventToCartFailure, state => ({
     ...state,
-    eventifyEvents: { ...state.eventifyEvents, adding: false },
+    eventifyEvents: { ...state.eventifyEvents, adding: false }
   })),
+  /**
+   * Remove Event From Cart Api Actions.
+   */
   on(EventsActions.removeEventFromCart, (state, { event }) => ({
     ...state,
     eventifyEvents: eventifyEventsAdapter.addOne(event, {
       ...state.eventifyEvents,
-      adding: true,
+      adding: true
     }),
     cart: cartAdapter.removeOne(event._id, {
       ...state.cart,
-      adding: true,
-    }),
+      adding: true
+    })
   })),
-  on(EventsActions.removeEventFromCartSuccess, (state) => ({
+  on(EventsActions.removeEventFromCartSuccess, state => ({
     ...state,
-    cart: { ...state.cart, adding: false },
+    cart: { ...state.cart, adding: false }
   })),
-  on(EventsActions.removeEventFromCartFailure, (state) => ({
+  on(EventsActions.removeEventFromCartFailure, state => ({
     ...state,
-    cart: { ...state.cart, adding: false },
+    cart: { ...state.cart, adding: false }
   }))
 );
 
-export const eventsReducer = (
-  state: EventsState | undefined,
-  action: Action
-) => {
+export const eventsReducer = (state: EventsState | undefined, action: Action) => {
   return reducer(state, action);
 };

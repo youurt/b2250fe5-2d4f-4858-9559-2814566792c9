@@ -5,7 +5,7 @@ import {
   provideRouter,
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
-  withInMemoryScrolling,
+  withInMemoryScrolling
 } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { routerReducer } from '@ngrx/router-store';
@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
       withEnabledBlockingInitialNavigation(),
 
       withInMemoryScrolling({
-        scrollPositionRestoration: 'enabled',
+        scrollPositionRestoration: 'enabled'
       }),
       withComponentInputBinding() // adds support for component input binding of route data and params
     ),
@@ -28,6 +28,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore({ routerReducer: routerReducer }),
     provideEffects([]),
-    provideStoreDevtools({ maxAge: 50 }),
-  ],
+    provideStoreDevtools({ maxAge: 50 })
+  ]
 };

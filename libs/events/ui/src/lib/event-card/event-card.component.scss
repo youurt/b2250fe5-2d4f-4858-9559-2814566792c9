@@ -12,26 +12,29 @@
    ========================================================================== */
 
 .c-event-card {
+
   img {
     float: left;
-    width:  400px;
-    height: 400px;
     object-fit: cover;
-}
+    width: 400px;
+    height: 400px;
+  }
+
   &__header-image {
-      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-      background-size: cover;
-    }
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 
-    .mat-mdc-card-header {
-      height: 8rem;
-    }
+  .mat-mdc-card-header {
+    height: 8rem;
+  }
 
-    .mat-mdc-card-title {
-        font-size: 0.8rem;
-        text-wrap: pretty;
-    }
- }
+  .mat-mdc-card-title {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: .8rem;
+    text-wrap: pretty;
+  }
+}
 
 
 

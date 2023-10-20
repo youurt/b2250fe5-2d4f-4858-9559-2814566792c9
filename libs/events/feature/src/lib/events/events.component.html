@@ -13,10 +13,7 @@
   <div>
     <div *ngFor="let event of config.events">
       <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
-        <div
-          class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center"
-          style="top: 64px; background-color: #212121"
-        >
+        <div class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center" style="top: 64px; background-color: #212121">
           {{ event[0] | date }}
         </div>
       </ng-container>

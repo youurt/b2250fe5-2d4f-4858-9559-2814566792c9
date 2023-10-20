@@ -6,7 +6,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,19 +18,11 @@ import { EventifyVenue } from '@eventify-org/common-api';
 @Component({
   selector: 'eventify-org-event-card',
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatButtonModule,
-    DatePipe,
-    MatIconModule,
-    MatChipsModule,
-    NgIf,
-    MatTooltipModule,
-  ],
+  imports: [MatCardModule, MatButtonModule, DatePipe, MatIconModule, MatChipsModule, NgIf, MatTooltipModule],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventCardComponent {
   @HostBinding('class.c-event-card') class = true;
@@ -60,16 +52,22 @@ export class EventCardComponent {
    */
   @Input({ required: true }) endingDate!: string;
 
+  /**
+   * Emits when the add to cart button is clicked.
+   */
   @Output() addToCard = new EventEmitter<void>();
 
-  fallbackImagePath =
-    'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg';
+  /**
+   * The fallback image path.
+   */
+  protected fallbackImagePath = 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg';
 
-  onImageError(event: Event) {
-    event.target &&
-      (event.target as HTMLImageElement).setAttribute(
-        'src',
-        this.fallbackImagePath
-      );
+  /**
+   * When the image fails to load, this method is called. It is done, so the fallback image can be loaded.
+   *
+   * @param event The event.
+   */
+  protected onImageError(event: Event) {
+    event.target && (event.target as HTMLImageElement).setAttribute('src', this.fallbackImagePath);
   }
 }
