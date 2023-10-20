@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types": ["node", "jest"],
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -19,9 +20,7 @@
       "@eventify-org/common-ui": ["libs/common/ui/src/index.ts"],
       "@eventify-org/events": ["libs/events/feature/src/index.ts"],
       "@eventify-org/events-ui": ["libs/events/ui/src/index.ts"],
-      "@eventify-org/events/data-access": [
-        "libs/events/data-access/src/index.ts"
-      ]
+      "@eventify-org/events/data-access": ["libs/events/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

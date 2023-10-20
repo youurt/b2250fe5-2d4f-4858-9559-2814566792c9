@@ -69,6 +69,7 @@ export class ToolbarComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    // emit the form value changes to the outer world!
     this.toolbarForm.get('search')?.valueChanges.subscribe(value => {
       this.formValueChanges.emit(value);
     });

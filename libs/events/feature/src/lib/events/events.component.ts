@@ -27,9 +27,7 @@ import { map } from 'rxjs';
 })
 export class EventTitleCheckPipe implements PipeTransform {
   transform(events: [string, EventifyEvent[]], searchTerm: string): boolean {
-    return events[1].some(event => {
-      return event.title.toLowerCase().includes(searchTerm);
-    });
+    return events[1].some(event => event.title.toLowerCase().includes(searchTerm));
   }
 }
 
@@ -53,9 +51,9 @@ export class EventTitleCheckPipe implements PipeTransform {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent implements OnInit {
-  private eventsFacade = inject(EventsFacade);
-
   @HostBinding('class.c-events') class = true;
+
+  private eventsFacade = inject(EventsFacade);
 
   /**
    * The search term.
@@ -67,7 +65,7 @@ export class EventsComponent implements OnInit {
    *
    * The grouping and sorting handling is done inside the pipe of the `events$` observable.
    */
-  protected events$ = this.eventsFacade.$events.pipe(
+  protected events$ = this.eventsFacade.events$.pipe(
     map(events =>
       Object.entries(
         events
@@ -83,17 +81,18 @@ export class EventsComponent implements OnInit {
 
             return acc;
           }, <Record<string, EventifyEvent[]>>{})
-      ).sort((a, b) => {
-        // sort events by date
-        return new Date(a[0]).getTime() - new Date(b[0]).getTime();
-      })
+      ).sort(
+        (a, b) =>
+          // sort events by date
+          new Date(a[0]).getTime() - new Date(b[0]).getTime()
+      )
     )
   );
 
   /**
    * The list of events in the cart.
    */
-  protected cart$ = this.eventsFacade.$cart;
+  protected cart$ = this.eventsFacade.cart$;
 
   ngOnInit(): void {
     this.eventsFacade.loadEvents(); // we need to load the store initially
@@ -113,7 +112,7 @@ export class EventsComponent implements OnInit {
    *
    * @param event The `EventifyEvent` to add to the cart.
    */
-  onAddToCart(event: EventifyEvent) {
+  protected onAddToCart(event: EventifyEvent) {
     this.eventsFacade.addEventToCart(event);
   }
 
@@ -122,7 +121,7 @@ export class EventsComponent implements OnInit {
    *
    * @param event The `EventifyEvent` to remove from the cart.
    */
-  onRemoveFromCart(event: EventifyEvent) {
+  protected onRemoveFromCart(event: EventifyEvent) {
     this.eventsFacade.removeEventFromCart(event);
   }
 }
