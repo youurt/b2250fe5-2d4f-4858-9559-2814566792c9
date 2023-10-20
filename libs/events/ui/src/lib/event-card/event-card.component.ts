@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,6 +23,7 @@ import { EventifyVenue } from '@eventify-org/common-api';
     DatePipe,
     MatIconModule,
     MatChipsModule,
+    NgIf,
   ],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss'],
@@ -61,4 +62,12 @@ export class EventCardComponent {
 
   fallbackImagePath =
     'https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg';
+
+  onImageError(event: Event) {
+    event.target &&
+      (event.target as HTMLImageElement).setAttribute(
+        'src',
+        this.fallbackImagePath
+      );
+  }
 }
