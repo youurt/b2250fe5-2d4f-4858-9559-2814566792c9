@@ -17,6 +17,13 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button>SHARE</button>
+    <button
+      type="button"
+      mat-mini-fab
+      aria-label="Example icon button with a delete icon"
+      (click)="addToCard.emit()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -16,12 +16,14 @@
     <div class="grid mb-4 sm:grid-cols-3 grid-cols-1 gap-4 px-4 sm:px-8">
       <ng-container *ngFor="let event of event[1]">
         <eventify-org-event-card
-          *ngIf="event.title.toLowerCase().startsWith(searchTerm)"
+          *ngIf="event.title.toLowerCase().includes(searchTerm)"
+          [id]="event._id"
           [title]="event.title"
           [imagePath]="event.flyerFront"
           [location]="event.venue.direction"
           [startingDate]="event.startTime"
           [endingDate]="event.endTime"
+          (addToCard)="onAddToCard(event._id)"
         ></eventify-org-event-card>
       </ng-container>
     </div>

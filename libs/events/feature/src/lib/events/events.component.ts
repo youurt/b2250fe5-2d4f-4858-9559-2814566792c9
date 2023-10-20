@@ -22,7 +22,7 @@ import { map } from 'rxjs';
 export class EventTitleCheckPipe implements PipeTransform {
   transform(events: [string, EventifyEvent[]], searchTerm: string): boolean {
     return events[1].some((event) => {
-      return event.title.toLowerCase().startsWith(searchTerm);
+      return event.title.toLowerCase().includes(searchTerm);
     });
   }
 }
@@ -80,7 +80,10 @@ export class EventsComponent implements OnInit {
   }
 
   onFormValueChanges(searchTerm: string) {
-    console.log(searchTerm);
     this.searchTerm = searchTerm.toLowerCase();
+  }
+
+  onAddToCard(id: string) {
+    console.log(id);
   }
 }

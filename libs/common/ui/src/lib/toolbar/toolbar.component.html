@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="flex justify-between">
   <form [formGroup]="toolbarForm" class="c-eventify-org-toolbar__form">
     <mat-form-field class="example-full-width">
       <span matPrefix><mat-icon>search</mat-icon></span>
@@ -10,4 +10,17 @@
       />
     </mat-form-field>
   </form>
+  <button
+    type="button"
+    mat-mini-fab
+    aria-label="Example icon button with a delete icon"
+    matBadge="15"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>event</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
 </mat-toolbar>

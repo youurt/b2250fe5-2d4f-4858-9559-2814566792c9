@@ -9,9 +9,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
@@ -24,6 +27,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatMenuModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
