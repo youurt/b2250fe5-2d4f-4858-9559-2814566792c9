@@ -8,20 +8,21 @@ import { BehaviorSubject } from 'rxjs';
 import { EventsComponent } from './events.component';
 import { EventsComponentHarness } from './events.component.harness';
 
-const createEventsFacadeMock = () => ({
-  events$: new BehaviorSubject([
-    createEvent({ title: 'foo', date: '2022-01-02T00:00:00.000' }),
-    createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' }),
-    createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' })
-  ]),
-  cart$: new BehaviorSubject([createEvent({ _id: '3' }), createEvent({ _id: '4' })]),
-  eventsLoading$: new BehaviorSubject(false),
-  loadEvents: jest.fn(),
-  onAddToCart: jest.fn(),
-  onRemoveFromCart: jest.fn()
-});
-
 describe('EventsComponent', () => {
+  const createEventsFacadeMock = () => ({
+    events$: new BehaviorSubject([
+      createEvent({ title: 'foo', date: '2022-01-02T00:00:00.000' }),
+      createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' }),
+      createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' })
+    ]),
+    cart$: new BehaviorSubject([createEvent({ _id: '3' }), createEvent({ _id: '4' })]),
+    eventsLoading$: new BehaviorSubject(false),
+    loadEvents: jest.fn(),
+    onAddToCart: jest.fn(),
+    onRemoveFromCart: jest.fn(),
+    removeEventFromCart: jest.fn()
+  });
+
   let fixture: ComponentFixture<EventsComponent>;
   let eventsFacadeMock: ReturnType<typeof createEventsFacadeMock>;
   let harness: EventsComponentHarness;
