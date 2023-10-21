@@ -11,11 +11,12 @@
     (removeFromCart)="onRemoveFromCart($event)"
   ></eventify-org-toolbar>
   <div *ngFor="let event of config.events">
-    <ng-container *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm">
-      <div class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center c-events__date-header">
-        {{ event[0] | date }}
-      </div>
-    </ng-container>
+    <div
+      *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm"
+      class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center c-events__date-header"
+    >
+      {{ event[0] | date }}
+    </div>
     <div class="grid mb-4 md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
       <ng-container *ngFor="let event of event[1]">
         <eventify-org-event-card
@@ -30,5 +31,6 @@
         ></eventify-org-event-card>
       </ng-container>
     </div>
+    <mat-toolbar class="bg-gray-800 text-white"> Total: {{ config.cart?.length }} </mat-toolbar>
   </div>
 </ng-container>

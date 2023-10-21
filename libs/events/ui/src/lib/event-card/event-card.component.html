@@ -18,6 +18,14 @@
         <mat-chip-option [selectable]="false">Ends: {{ endingDate | date }}</mat-chip-option>
       </mat-chip-listbox>
       <div class="flex gap-3 justify-end items-center">
+        <a
+          data-role="location-button"
+          mat-mini-fab
+          [href]="location.direction"
+          [matTooltip]="'Check out the location: ' + location.name + '!'"
+        >
+          <mat-icon>location_on</mat-icon>
+        </a>
         <button
           type="button"
           data-role="add-to-cart"
@@ -27,14 +35,6 @@
         >
           <mat-icon>add</mat-icon>
         </button>
-        <a
-          data-role="location-button"
-          mat-mini-fab
-          [href]="location.direction"
-          [matTooltip]="'Check out the location: ' + location.name + '!'"
-        >
-          <mat-icon>location_on</mat-icon>
-        </a>
       </div>
     </div>
   </mat-card-actions>

@@ -10,6 +10,7 @@ import {
   inject
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { EventifyEvent } from '@eventify-org/common-api';
 import { ToolbarComponent } from '@eventify-org/common-ui';
 import { EventCardComponent } from '@eventify-org/events-ui';
@@ -59,7 +60,8 @@ export class EventCardCheckPipe implements PipeTransform {
     EventCardComponent,
     DatePipe,
     EventTitleCheckPipe,
-    EventCardCheckPipe
+    EventCardCheckPipe,
+    MatToolbarModule
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
