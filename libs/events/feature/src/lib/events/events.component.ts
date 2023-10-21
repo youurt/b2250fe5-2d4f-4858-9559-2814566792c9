@@ -28,8 +28,8 @@ import { map } from 'rxjs';
   standalone: true
 })
 export class EventTitleCheckPipe implements PipeTransform {
-  transform(events: [string, EventifyEvent[]], searchTerm: string): boolean {
-    return events[1].some(event => event.title.toLowerCase().includes(searchTerm));
+  transform(groupedEvents: [string, EventifyEvent[]], searchTerm: string): boolean {
+    return groupedEvents[1].some(event => event.title.toLowerCase().includes(searchTerm));
   }
 }
 
@@ -45,6 +45,26 @@ export class EventTitleCheckPipe implements PipeTransform {
 export class EventCardCheckPipe implements PipeTransform {
   transform(title: string, searchTerm: string): boolean {
     return title.toLowerCase().includes(searchTerm);
+  }
+}
+/**
+ * CHecks if there are no events found.
+ */
+@Pipe({
+  name: 'eventifyOrgNoEventFoundCheckPipe',
+  standalone: true
+})
+export class NoEventFoundCheckPipe implements PipeTransform {
+  transform(groupedEvents: [string, EventifyEvent[]][] | null, searchTerm: string): boolean {
+    // if there are no events, return false
+    if (groupedEvents === null) {
+      return false;
+    }
+
+    // unpack the grouped events and check if there are no events found
+    return !groupedEvents.every(([_, events]) =>
+      events.every(event => !event.title.toLowerCase().includes(searchTerm))
+    );
   }
 }
 
@@ -63,7 +83,8 @@ export class EventCardCheckPipe implements PipeTransform {
     EventTitleCheckPipe,
     EventCardCheckPipe,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NoEventFoundCheckPipe
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
