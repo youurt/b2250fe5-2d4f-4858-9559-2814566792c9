@@ -19,10 +19,11 @@
       >
         {{ event[0] | date }}
       </div>
-      <div class="grid mb-4 md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
+      <div class="grid md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
         <ng-container *ngFor="let event of event[1]">
           <eventify-org-event-card
             *ngIf="event.title | eventifyOrgEventCardCheckPipe : searchTerm"
+            class="mb-4"
             [id]="event._id"
             [title]="event.title"
             [imagePath]="event.flyerFront"
@@ -31,6 +32,9 @@
             [endingDate]="event.endTime"
             (addToCart)="onAddToCart(event)"
           ></eventify-org-event-card>
+          <div *ngIf="false" class="flex justify-center items-center h-screen w-screen">
+            <h1 class="text-2xl">No event found</h1>
+          </div>
         </ng-container>
       </div>
     </div>
