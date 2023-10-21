@@ -11,9 +11,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { EventifyEvent } from '@eventify-org/common-api';
-import { ToolbarComponent } from '@eventify-org/common-ui';
+import { EventifyEvent, ToolbarService } from '@eventify-org/common-api';
 import { EventCardComponent } from '@eventify-org/events-ui';
 import { EventsFacade } from '@eventify-org/events/data-access';
 import { map } from 'rxjs';
@@ -28,7 +26,11 @@ import { map } from 'rxjs';
   standalone: true
 })
 export class EventTitleCheckPipe implements PipeTransform {
-  transform(groupedEvents: [string, EventifyEvent[]], searchTerm: string): boolean {
+  transform(groupedEvents: [string, EventifyEvent[]], searchTerm: string | null): boolean {
+    if (searchTerm === null) {
+      return true;
+    }
+
     return groupedEvents[1].some(event => event.title.toLowerCase().includes(searchTerm));
   }
 }
@@ -43,7 +45,11 @@ export class EventTitleCheckPipe implements PipeTransform {
   standalone: true
 })
 export class EventCardCheckPipe implements PipeTransform {
-  transform(title: string, searchTerm: string): boolean {
+  transform(title: string, searchTerm: string | null): boolean {
+    if (searchTerm === null) {
+      return true;
+    }
+
     return title.toLowerCase().includes(searchTerm);
   }
 }
@@ -55,7 +61,11 @@ export class EventCardCheckPipe implements PipeTransform {
   standalone: true
 })
 export class NoEventFoundCheckPipe implements PipeTransform {
-  transform(groupedEvents: [string, EventifyEvent[]][] | null, searchTerm: string): boolean {
+  transform(groupedEvents: [string, EventifyEvent[]][] | null, searchTerm: string | null): boolean {
+    if (searchTerm === null) {
+      return false;
+    }
+
     // if there are no events, return false
     if (groupedEvents === null) {
       return false;
@@ -77,12 +87,10 @@ export class NoEventFoundCheckPipe implements PipeTransform {
     AsyncPipe,
     JsonPipe,
     MatButtonModule,
-    ToolbarComponent,
     EventCardComponent,
     DatePipe,
     EventTitleCheckPipe,
     EventCardCheckPipe,
-    MatToolbarModule,
     MatProgressSpinnerModule,
     NoEventFoundCheckPipe
   ],
@@ -95,11 +103,12 @@ export class EventsComponent implements OnInit {
   @HostBinding('class.c-events') class = true;
 
   private eventsFacade = inject(EventsFacade);
+  private toolbarService = inject(ToolbarService);
 
   /**
    * The search term.
    */
-  protected searchTerm = '';
+  protected searchTerm$ = this.toolbarService.searchTerm$;
 
   /**
    * The list of events.
@@ -135,22 +144,8 @@ export class EventsComponent implements OnInit {
    */
   protected eventsLoading$ = this.eventsFacade.eventsLoading$;
 
-  /**
-   * The list of events in the cart.
-   */
-  protected cart$ = this.eventsFacade.cart$;
-
   ngOnInit(): void {
     this.eventsFacade.loadEvents(); // we need to load the store initially
-  }
-
-  /**
-   * Handles the form value changes and sets the search term.
-   *
-   * @param searchTerm The `string` to search for.
-   */
-  protected onFormValueChanges(searchTerm: string) {
-    this.searchTerm = searchTerm.toLowerCase();
   }
 
   /**
@@ -160,14 +155,5 @@ export class EventsComponent implements OnInit {
    */
   protected onAddToCart(event: EventifyEvent) {
     this.eventsFacade.addEventToCart(event);
-  }
-
-  /**
-   * Handles removing an event from the cart.
-   *
-   * @param event The `EventifyEvent` to remove from the cart.
-   */
-  protected onRemoveFromCart(event: EventifyEvent) {
-    this.eventsFacade.removeEventFromCart(event);
   }
 }

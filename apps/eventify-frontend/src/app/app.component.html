@@ -1,1 +1,14 @@
-<router-outlet />
+<ng-container
+  *ngIf="{
+    cart: cart$ | async
+  } as config"
+>
+  <eventify-org-toolbar
+    class="sticky top-0 z-20"
+    [cart]="config.cart"
+    (formValueChanges)="onFormValueChanges($event)"
+    (removeFromCart)="onRemoveFromCart($event)"
+  ></eventify-org-toolbar>
+  <router-outlet />
+  <mat-toolbar class="flex justify-end gap-2">🎈 🎉 🗓️ <span class="font-mono">Eventify</span></mat-toolbar>
+</ng-container>

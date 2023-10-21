@@ -13,12 +13,13 @@ $events-top-bar-height: 64px;
 
 .c-events {
 
-  &__date-header {
-    top: $events-top-bar-height;
-    background-color: #212121;
+  &__main {
+    height: calc(100vh - 2 * #{$events-top-bar-height});
+    overflow: auto;
   }
 
-  &__main {
-    min-height: calc(100vh - 2 * #{$events-top-bar-height});
+  &__date-header {
+    top: 0;
+    background-color: #212121;
   }
 }
