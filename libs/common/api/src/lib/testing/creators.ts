@@ -1,5 +1,10 @@
 import { EventifyEvent } from '../interfaces/event.interface';
 
+/**
+ *
+ * @param data Rest data to override in form of a `Partial<EventifyEvent>`.
+ * @returns A mocked `EventifyEvent`.
+ */
 export const createEvent = (data: Partial<EventifyEvent> = {}): EventifyEvent => ({
   _id: '5f5f5f5f5f5f5f5f5f5f5f5f',
   title: 'My Awesome Event',

@@ -10,6 +10,7 @@ export class EventsEffects {
   private actions$ = inject(Actions);
   private eventsHttpService = inject(EventsHttpService);
 
+  // @TODO: Add some notification on success
   loadEvents$ = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.loadEvents),

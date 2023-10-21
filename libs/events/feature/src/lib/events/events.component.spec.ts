@@ -15,6 +15,7 @@ const createEventsFacadeMock = () => ({
     createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' })
   ]),
   cart$: new BehaviorSubject([createEvent({ _id: '3' }), createEvent({ _id: '4' })]),
+  eventsLoading$: new BehaviorSubject(false),
   loadEvents: jest.fn(),
   onAddToCart: jest.fn(),
   onRemoveFromCart: jest.fn()

@@ -14,6 +14,11 @@ export class EventsFacade {
   events$ = this.store.pipe(select(EventsSelectors.getEvents));
 
   /**
+   * Returns the loading state of the events.
+   */
+  eventsLoading$ = this.store.pipe(select(EventsSelectors.eventsLoading));
+
+  /**
    * Returns the list of events in the cart.
    */
   cart$ = this.store.pipe(select(EventsSelectors.getCart));

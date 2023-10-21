@@ -1,6 +1,7 @@
 <ng-container
   *ngIf="{
     events: events$ | async,
+    eventsLoading: eventsLoading$ | async,
     cart: cart$ | async
   } as config"
 >
@@ -10,27 +11,36 @@
     (formValueChanges)="onFormValueChanges($event)"
     (removeFromCart)="onRemoveFromCart($event)"
   ></eventify-org-toolbar>
-  <div *ngFor="let event of config.events">
-    <div
-      *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm"
-      class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center c-events__date-header"
-    >
-      {{ event[0] | date }}
+  <ng-container *ngIf="config.eventsLoading === false; else loading">
+    <div *ngFor="let event of config.events">
+      <div
+        *ngIf="event | eventifyOrgEventTitleCheckPipe : searchTerm"
+        class="p-2 mb-4 sticky z-10 opacity-75 shadow-md text-center c-events__date-header"
+      >
+        {{ event[0] | date }}
+      </div>
+      <div class="grid mb-4 md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
+        <ng-container *ngFor="let event of event[1]">
+          <eventify-org-event-card
+            *ngIf="event.title | eventifyOrgEventCardCheckPipe : searchTerm"
+            [id]="event._id"
+            [title]="event.title"
+            [imagePath]="event.flyerFront"
+            [location]="event.venue"
+            [startingDate]="event.startTime"
+            [endingDate]="event.endTime"
+            (addToCart)="onAddToCart(event)"
+          ></eventify-org-event-card>
+        </ng-container>
+      </div>
     </div>
-    <div class="grid mb-4 md:grid-cols-3 grid-cols-1 gap-4 px-16 sm:px-24">
-      <ng-container *ngFor="let event of event[1]">
-        <eventify-org-event-card
-          *ngIf="event.title | eventifyOrgEventCardCheckPipe : searchTerm"
-          [id]="event._id"
-          [title]="event.title"
-          [imagePath]="event.flyerFront"
-          [location]="event.venue"
-          [startingDate]="event.startTime"
-          [endingDate]="event.endTime"
-          (addToCart)="onAddToCart(event)"
-        ></eventify-org-event-card>
-      </ng-container>
-    </div>
-  </div>
+  </ng-container>
+
   <mat-toolbar class="flex justify-end bg-gray-800 text-white">🎈 🎉 🗓️ Eventify </mat-toolbar>
 </ng-container>
+<!-- The template for the loading spinner. -->
+<ng-template #loading>
+  <div class="flex justify-center items-center h-screen w-screen">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

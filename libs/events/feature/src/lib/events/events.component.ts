@@ -10,6 +10,7 @@ import {
   inject
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { EventifyEvent } from '@eventify-org/common-api';
 import { ToolbarComponent } from '@eventify-org/common-ui';
@@ -61,7 +62,8 @@ export class EventCardCheckPipe implements PipeTransform {
     DatePipe,
     EventTitleCheckPipe,
     EventCardCheckPipe,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
@@ -106,6 +108,11 @@ export class EventsComponent implements OnInit {
       )
     )
   );
+
+  /**
+   * The loading state of the events.
+   */
+  protected eventsLoading$ = this.eventsFacade.eventsLoading$;
 
   /**
    * The list of events in the cart.

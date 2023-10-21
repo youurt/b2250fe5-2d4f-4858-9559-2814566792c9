@@ -10,7 +10,7 @@ export const selectEventsState = createFeatureSelector<EventsState>(EVENTS_FEATU
 const { selectAll: selectAllEvents } = eventifyEventsAdapter.getSelectors();
 const eventifyEventsState = createSelector(selectEventsState, state => state.eventifyEvents);
 export const getEvents = createSelector(eventifyEventsState, state => selectAllEvents(state));
-
+export const eventsLoading = createSelector(selectEventsState, state => state.eventifyEvents.loading);
 /**
  * 'Cart' Selectors
  */
