@@ -20,8 +20,8 @@
     <mat-menu #menu="matMenu">
       <div class="flex flex-col gap-2">
         <ng-container *ngFor="let item of cart; let isLast = last">
-          <button type="button" (click)="onRemoveFromCart(item)" mat-menu-item>
-            remove {{ item.title }} from cart
+          <button mat-menu-item type="button" (click)="onRemoveFromCart(item)">
+            <mat-icon class="min-w-max">cancel</mat-icon> {{ item.title }}
           </button>
           <mat-divider *ngIf="!isLast"></mat-divider>
         </ng-container>
