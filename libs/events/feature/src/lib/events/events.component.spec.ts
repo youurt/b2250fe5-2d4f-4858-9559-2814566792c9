@@ -15,12 +15,8 @@ describe('EventsComponent', () => {
       createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' }),
       createEvent({ _id: '2', date: '2022-02-04T00:00:00.000' })
     ]),
-    cart$: new BehaviorSubject([createEvent({ _id: '3' }), createEvent({ _id: '4' })]),
     eventsLoading$: new BehaviorSubject(false),
-    loadEvents: jest.fn(),
-    onAddToCart: jest.fn(),
-    onRemoveFromCart: jest.fn(),
-    removeEventFromCart: jest.fn()
+    loadEvents: jest.fn()
   });
 
   let fixture: ComponentFixture<EventsComponent>;
@@ -44,36 +40,5 @@ describe('EventsComponent', () => {
   it('should have 3 events in the view', async () => {
     const events = await harness.eventCards();
     expect(events.length).toBe(3);
-  });
-
-  it('should filter events from view', async () => {
-    const toolbar = await harness.toolbar();
-    const input = await toolbar.searchInput();
-    await input.setValue('foo'); // let's filter foo
-    await input.blur();
-
-    expect(await harness.eventCards()).toHaveLength(1);
-  });
-
-  it('should have 2 events in the cart', async () => {
-    const toolbar = await harness.toolbar();
-    const badge = await toolbar.badge();
-
-    expect(await badge?.getText()).toBe('2');
-  });
-
-  it('should should remove events from the cart', async () => {
-    const toolbar = await harness.toolbar();
-    const badge = await toolbar.badge();
-
-    expect(await badge?.getText()).toBe('2');
-
-    const menu = await toolbar.shoppingCartMenu();
-    await menu.open();
-
-    const menuItems = await menu.getItems();
-    await menuItems[0].click();
-
-    expect(await badge?.getText()).toBe('1');
   });
 });
