@@ -18,7 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       appRoutes,
       withEnabledBlockingInitialNavigation(),
-
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled'
       }),

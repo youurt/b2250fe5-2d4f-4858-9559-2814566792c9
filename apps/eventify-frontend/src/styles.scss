@@ -1,3 +1,5 @@
+/* stylelint-disable no-invalid-position-at-import-rule, scss/at-rule-no-unknown */
+/* stylelint-disable  */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,20 +8,22 @@
 @import '@thecodecampus/angular-material-theme/src/styling/theme';
 @include tcc-angular-material-dark-theme();
 
-*, :before, :after {
+*, ::before, ::after {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: currentColor;
+  border-color: currentcolor;
   color-scheme: dark;
 }
 
-html{
-  font-family: 'Prompt', sans-serif;
-  -webkit-text-size-adjust: 100%;
+html {
+  font-family: Prompt, sans-serif;
+  text-size-adjust: 100%;
   tab-size: 4;
 }
 
 body {
   display: block;
 }
+
+/* stylelint-enable no-invalid-position-at-import-rule, scss/at-rule-no-unknown */
